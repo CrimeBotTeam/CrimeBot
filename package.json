@@ -21,10 +21,10 @@
   "license": "MIT",
   "homepage": "https://developers.facebook.com/docs/messenger-platform/guides/quick-start",
   "dependencies": {
-    "request": "^2.72.0",
-    "express": "*",
-    "body-parser": "*",
-		"mongodb": "^2.2.11",
-		"mongoose": "^4.6.8"
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongodb": "^2.2.11",
+    "mongoose": "^4.9.4",
+    "request": "^2.81.0"
   }
 }
