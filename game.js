@@ -22,7 +22,7 @@ function parseIncoming(user_id, messageItem, userObj) {
 	}
 	// If we recieve any text message, parse and respond accordingly
 	if (messageItem.message && messageItem.message.text) {
-		
+
     switch (messageItem.message.text) {
       case 'generic':
         fb.sendGeneric(user_id, message_templates.templates["welcome_message"]);
@@ -31,17 +31,17 @@ function parseIncoming(user_id, messageItem, userObj) {
         player.addMoney(user_id, userObj, 100);
         break;
       default:
-      //sending a repeat back to user 
-      fb.sendText(user_id, messageItem.message.text);
+      //sending a repeat back to user
+      fb.sendText(user_id, messageItem.message.text+" from heroku");
     }
-    
+
 	}
 	// If the user sends us a button click
 	if (messageItem.postback && messageItem.postback.payload) {
 		var button_payload_state = messageItem.postback.payload;
-    
+
     console.log("Received postback "+button_payload_state);
-    
+
 		switch (button_payload_state) {
 			case "get_options":
 				fb.sendGeneric(user_id, message_templates.templates["options_message"]);
