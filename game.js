@@ -53,7 +53,7 @@ function parseIncoming(user_id, messageItem, userObj) {
         fb.sendText(user_id, "Ready to start your own crime family, eh?")
         break;
       default:
-        fb.sendText(user_id,"other postback received");
+        fb.sendText(user_id,"you want to "+button_payload_state);
         break;
 		}
 	}
