@@ -38,7 +38,7 @@ let templates = {
             "subtitle": "Justin",
 						"image_url":"http://www.computerlegacy.com/wp-content/uploads/2015/08/nest_protect.jpg"
 					},
-          
+
 					{
 						"title": "Easy",
 						"subtitle": "Jon-Paul",
@@ -47,7 +47,28 @@ let templates = {
 				]
 			}
 		}
-	}
+	},
+	"family_options":{
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":"What can I tell you?",
+        "buttons":[
+          {
+            "type":"postback",
+						"title":"My Net Worth",
+            "payload":"NET_WORTH_PAYLOAD"
+          },
+          {
+            "type":"postback",
+            "title":"My Armory",
+            "payload":"ARMORY_PAYLOAD"
+          }
+        ]
+      }
+    }
+  }
 };
 
 module.exports = {
