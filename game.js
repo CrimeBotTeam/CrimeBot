@@ -21,8 +21,14 @@ function parseIncoming(user_id, messageItem, userObj) {
 		current_state = userObj.current_state;
 	}
 
+	//if user sent with a quick reply
+if (messageItem.quick_reply){
+	fb.sendText(user_id,"Got a quick reply: "+messageItem.quick_reply.payload);
+	//break;
+}
+
 	// If the user sends us anything with a payload
-	if ((messageItem.postback && messageItem.postback.payload) || (messageItem.quick_reply)){
+	if ((messageItem.postback && messageItem.postback.payload)){
 		var button_payload_state = messageItem.postback.payload;
 
     console.log("Received postback "+button_payload_state);
