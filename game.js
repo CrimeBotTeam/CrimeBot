@@ -52,9 +52,12 @@ function parseIncoming(user_id, messageItem, userObj) {
       case "Greeting":
         fb.sendText(user_id, "Ready to start your own crime family, eh?")
         break;
-				case "FAMILY_REPORT_PAYLOAD":
-					fb.sendGeneric(user_id,message_templates.templates["family_options"]);
-					break;
+			case "FAMILY_REPORT_PAYLOAD":
+				fb.sendGeneric(user_id,message_templates.templates["family_options"]);
+				break;
+			case "NET_WORTH_PAYLOAD":
+				fb.sendGeneric(user_id,message_templates.templates["quick_reply_test"]);
+				break;
 			default:
         fb.sendText(user_id,"you want to "+button_payload_state);
         break;
