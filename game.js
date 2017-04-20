@@ -22,7 +22,7 @@ function parseIncoming(user_id, messageItem, userObj) {
 	}
 
 	// If the user sends us anything with a payload
-	if (messageItem.postback && messageItem.postback.payload) {
+	if ((messageItem.postback && messageItem.postback.payload) || (messageItem.quick_reply)){
 		var button_payload_state = messageItem.postback.payload;
 
     console.log("Received postback "+button_payload_state);
