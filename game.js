@@ -22,8 +22,8 @@ function parseIncoming(user_id, messageItem, userObj) {
 	}
 
 	//if user sent with a quick reply
-if (messageItem.quick_reply){
-	fb.sendText(user_id,"Got a quick reply: "+messageItem.quick_reply.payload);
+if (messageItem.message.quick_reply){
+	fb.sendText(user_id,"Got a quick reply: "+messageItem.message.quick_reply.payload);
 	//break;
 }
 
