@@ -20,23 +20,8 @@ function parseIncoming(user_id, messageItem, userObj) {
 	if (userObj != null) {
 		current_state = userObj.current_state;
 	}
-	// If we recieve any text message, parse and respond accordingly
-	if (messageItem.message && messageItem.message.text) {
 
-    switch (messageItem.message.text) {
-      case 'generic':
-        fb.sendGeneric(user_id, message_templates.templates["welcome_message"]);
-        break;
-      case 'add':
-        player.addMoney(user_id, userObj, 100);
-        break;
-      default:
-      //sending a repeat back to user
-      fb.sendText(user_id, messageItem.message.text+" from heroku");
-    }
-
-	}
-	// If the user sends us a button click
+	// If the user sends us anything with a payload
 	if (messageItem.postback && messageItem.postback.payload) {
 		var button_payload_state = messageItem.postback.payload;
 
@@ -62,6 +47,22 @@ function parseIncoming(user_id, messageItem, userObj) {
         fb.sendText(user_id,"you want to "+button_payload_state);
         break;
 		}
+	}
+	// If we recieve any text message, parse and respond accordingly
+	if (messageItem.message && messageItem.message.text) {
+
+		switch (messageItem.message.text) {
+			case 'generic':
+				fb.sendGeneric(user_id, message_templates.templates["welcome_message"]);
+				break;
+			case 'add':
+				player.addMoney(user_id, userObj, 100);
+				break;
+			default:
+			//sending a repeat back to user
+			fb.sendText(user_id, messageItem.message.text+" from heroku");
+		}
+
 	}
 	// Save new user state. If user does not exist in DB, will create a new user.
 	db.setUserFieldById(user_id, "current_state", "");
