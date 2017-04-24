@@ -35,7 +35,7 @@ function parseIncoming(user_id, messageItem, userObj) {
 				fb.sendText(user_id, "Ok. There is so much you can do with stateful bots!");
 				break;
       case "Greeting":
-        fb.sendGeneric(user_id,message_templates.templates["greeting_replies"]);
+        fb.sendGeneric(user_id,message_templates.templates["greeting_template"]);
         break;
 			case "FAMILY_REPORT_PAYLOAD":
 				fb.sendGeneric(user_id,message_templates.templates["family_options"]);
