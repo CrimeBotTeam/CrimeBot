@@ -86,21 +86,27 @@ let templates = {
       }
     ]
   },
-"greeting_replies":{
-	"text":"So you want to start your own empire?",
-	"quick_replies":[
-		{
-			"content_type":"text",
-			"title":"Tell me more",
-			"payload":"TUTORIAL_PAYLOAD"
-		},
-		{
-			"content_type":"text",
-			"title":"Meet my Capos",
-			"payload":"CAPOS_PAYLOAD"
-		}
-	]
-}
+"greeting_template":{
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":"So you want to start your own empire?",
+        "buttons":[
+          {
+            "type":"postback",
+						"title":"Tell me more",
+						"payload":"TUTORIAL_PAYLOAD"
+          },
+          {
+            "type":"postback",
+						"title":"Meet my Capos",
+						"payload":"CAPOS_PAYLOAD"
+          }
+        ]
+      }
+    }
+  }
 };
 
 module.exports = {
