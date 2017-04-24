@@ -85,7 +85,22 @@ let templates = {
         "image_url":"http://petersfantastichats.com/img/green.png"
       }
     ]
-  }
+  },
+"greeting_replies":{
+	"text":"So you want to start your own empire?",
+	"quick_replies":[
+		{
+			"content_type":"text",
+			"title":"Tell me more",
+			"payload":"TUTORIAL_PAYLOAD"
+		},
+		{
+			"content_type":"text",
+			"title":"Meet my Capos",
+			"payload":"CAPOS_PAYLOAD"
+		}
+	]
+}
 };
 
 module.exports = {

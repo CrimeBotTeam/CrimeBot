@@ -35,7 +35,7 @@ function parseIncoming(user_id, messageItem, userObj) {
 				fb.sendText(user_id, "Ok. There is so much you can do with stateful bots!");
 				break;
       case "Greeting":
-        fb.sendText(user_id, "Ready to start your own crime family, eh?")
+        fb.sendGeneric(user_id,message_templates.templates["greeting_replies"]);
         break;
 			case "FAMILY_REPORT_PAYLOAD":
 				fb.sendGeneric(user_id,message_templates.templates["family_options"]);
@@ -50,9 +50,8 @@ function parseIncoming(user_id, messageItem, userObj) {
 	}
 
 	//if user sent with a quick reply
-	//if ((messageItem.message.quick_reply && messageItem.message.quick_reply.payload)){
-	//if ((messageItem.message.quick_reply != null)&&(messageItem.message.quick_reply.payload != null)){
 	else if (messageItem.message.quick_reply.payload){
+		// need to convert this to a switch at some point
 		fb.sendText(user_id,"Got a quick reply: "+messageItem.message.quick_reply.payload);
 }
 
