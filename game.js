@@ -71,13 +71,17 @@ function parseIncoming(user_id, messageItem, userObj) {
 	// If we recieve any text message, parse and respond accordingly
 	else if(messageItem.message && messageItem.message.text) {
 
-		switch (messageItem.message.text) {
+		switch (messageItem.message.text.toLowerCase()) {
 			case 'generic':
 				fb.sendGeneric(user_id, message_templates.templates["welcome_message"]);
 				break;
 			case 'add':
 				player.addMoney(user_id, userObj, 100);
 				break;
+			case 'reset':
+				fb.sendText(user_id,"resetting your user db entry");
+				db.getAndSetNewUser(user_id);
+				fb.sendText(user_id,"reset");
 			default:
 			//sending a repeat back to user
 			fb.sendText(user_id, messageItem.message.text+" from heroku");
