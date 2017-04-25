@@ -43,6 +43,9 @@ function parseIncoming(user_id, messageItem, userObj) {
 			case "NET_WORTH_PAYLOAD":
 				fb.sendGeneric(user_id,message_templates.templates["quick_reply_test"]);
 				break;
+			case "CAPOS_PAYLOAD":
+				fb.sendGeneric(user_id,message_templates.templates["capo_list_static"]);
+				break;
 			default:
         fb.sendText(user_id,"you want to "+button_payload_state);
         break;
