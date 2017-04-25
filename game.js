@@ -54,7 +54,7 @@ function parseIncoming(user_id, messageItem, userObj) {
 					fb.sendGeneric(user_id,message_templates.templates["capo_job_template"]);
 					break;
 			case "DB_PAYLOAD":
-					fb.sendText(user_id,userObj);
+					fb.sendText(user_id,""+userObj);
 					break;
 			default:
         fb.sendText(user_id,"you want to "+button_payload_state);
