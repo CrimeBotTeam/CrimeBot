@@ -197,28 +197,43 @@ let templates = {
     "attachment":{
       "type":"template",
       "payload":{
-        "template_type":"button",
-        "text":"I'm free boss. What do you want me to do?",
-        "buttons":[
-          {
-            "type":"postback",
-						"title":"Collect Protection Money / \u231a 10s",
-						"payload":"JOB_1"
-          },
-          {
-            "type":"postback",
-						"title":"Rob a Truck / \u231a 20s",
-						"payload":"JOB_2"
-          },
+        "template_type":"list",
+        //"text":"I'm free boss. What do you want me to do?",
+				"elements":[
 					{
-            "type":"postback",
-						"title":"Hit a Rival Target / \u231a 30s",
-						"payload":"JOB_3"
-          }
-        ]
+						"title":"Collect Protection Money",
+						"subtitle":"\u231a 10s",
+						"buttons":[
+		          {
+		            "type":"postback",
+								"title":"Do Job",
+								"payload":"JOB_1"
+		          }]
+					},
+					{
+						"title":"Rob a Truck",
+						"subtitle":"\u231a 20s",
+						"buttons":[
+		          {
+		            "type":"postback",
+								"title":"Do Job",
+								"payload":"JOB_2"
+		          }]
+					},
+					{
+						"title":"Hit a Rival Target",
+						"subtitle":"\u231a 30s",
+						"buttons":[
+		          {
+		            "type":"postback",
+								"title":"Do Job",
+								"payload":"JOB_3"
+		          }]
+					}
+				]
       }
     }
-  },
+  }
 };
 
 module.exports = {
