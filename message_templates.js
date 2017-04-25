@@ -176,7 +176,23 @@ let templates = {
         ]
       }
     }
-  }
+  },
+"tutorial_template":{
+	"attachment":{
+		"type":"template",
+		"payload":{
+			"template_type":"button",
+			"text":"Hire Capos to do the dirty work of criminal jobs, running rackets or fighitng off the opposition.",
+			"buttons":[
+				{
+					"type":"postback",
+					"title":"Meet my Capos",
+					"payload":"CAPOS_PAYLOAD"
+				}
+			]
+		}
+	}
+}
 };
 
 module.exports = {
