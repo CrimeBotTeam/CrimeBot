@@ -48,6 +48,76 @@ let templates = {
 			}
 		}
 	},
+	"capo_list_static": {
+		"attachment": {
+			"type": "template",
+			"payload": {
+				"template_type": "generic",
+				"elements": [
+					{
+					"title": "Crazy Ivan",
+					"subtitle": "\"Robberies are my speciality\"",
+					"image_url":"https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_eben.jpg",
+					"buttons":[
+	          {
+	            "type":"postback",
+							"title":"Contact Crazy Ivan",
+	            "payload":"CAPO_CRAZY_IVAN_CONTACT"
+	          }
+	        ]
+					},
+					{
+					"title": "Smoothie",
+					"subtitle": "\"Business dont run itself, boss\"",
+					"image_url":"https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_dave.jpg",
+					"buttons":[
+						{
+							"type":"postback",
+							"title":"Contact Smoothie",
+							"payload":"CAPO_SMOOTHIE_CONTACT"
+						}
+					]
+					},
+					{
+					"title": "Moonlight Maude",
+					"subtitle": "\"At Night, I get away with anything\"",
+					"image_url":"https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_erin.jpg",
+					"buttons":[
+	          {
+	            "type":"postback",
+							"title":"Contact Moonlight",
+	            "payload":"CAPO_MOONLIGHT_CONTACT"
+	          }
+	        ]
+					},
+					{
+					"title": "Triple Shot",
+					"subtitle": "\"Twice the speed, twice the payoff\"",
+					"image_url":"https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_jonpaul.jpg",
+					"buttons":[
+	          {
+	            "type":"postback",
+							"title":"Contact Triple Shot",
+	            "payload":"CAPO_TRIPLESHOT_CONTACT"
+	          }
+	        ]
+					},
+					{
+					"title": "Mister Juice",
+					"subtitle": "\"I drink your milkshake\"",
+					"image_url":"https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_lean.jpg",
+					"buttons":[
+	          {
+	            "type":"postback",
+							"title":"Contact Mister Juice",
+	            "payload":"CAPO_MISTER_JUICE_CONTACT"
+	          }
+	        ]
+					}
+				]
+			}
+		}
+	},
 	"family_options":{
     "attachment":{
       "type":"template",
