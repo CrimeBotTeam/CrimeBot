@@ -198,6 +198,7 @@ let templates = {
       "type":"template",
       "payload":{
         "template_type":"list",
+				"top_element_style": "compact",
         //"text":"I'm free boss. What do you want me to do?",
 				"elements":[
 					{
