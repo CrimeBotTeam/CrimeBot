@@ -134,6 +134,11 @@ let templates = {
             "type":"postback",
             "title":"My Armory",
             "payload":"ARMORY_PAYLOAD"
+          },
+					{
+            "type":"postback",
+            "title":"My Player DB Entry",
+            "payload":"DB_PAYLOAD"
           }
         ]
       }
