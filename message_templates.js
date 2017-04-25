@@ -192,7 +192,33 @@ let templates = {
 			]
 		}
 	}
-}
+},
+"capo_job_template":{
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":"I'm free boss. What do you want me to do?",
+        "buttons":[
+          {
+            "type":"postback",
+						"title":"Collect Protection Money / \u231a 10s",
+						"payload":"JOB_1"
+          },
+          {
+            "type":"postback",
+						"title":"Rob a Truck / \u231a 20s",
+						"payload":"JOB_2"
+          },
+					{
+            "type":"postback",
+						"title":"Hit a Rival Target / \u231a 30s",
+						"payload":"JOB_3"
+          }
+        ]
+      }
+    }
+  },
 };
 
 module.exports = {
