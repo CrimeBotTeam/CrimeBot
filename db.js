@@ -4,10 +4,10 @@
 
 const mongoose = require('mongoose');
 const User = mongoose.model('User', {
-  _id: String, 
-  nickname: String, 
-  money: Number, 
-  xp: Number, 
+  _id: String,
+  nickname: String,
+  money: Number,
+  xp: Number,
   current_state: String
 });
 
@@ -88,5 +88,6 @@ function getUserById(user_id, incomingMessage, callback) {
 
 module.exports = {
     setUserFieldById:setUserFieldById,
-    getUserById:getUserById
+    getUserById:getUserById,
+    getAndSetNewUser:getAndSetNewUser
 };
