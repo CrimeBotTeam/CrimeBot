@@ -63,7 +63,7 @@ function parseIncoming(user_id, messageItem, userObj) {
 	}
 
 	//if user sent with a quick reply
-	else if (messageItem.message.quick_reply.payload){
+	else if (messageItem.message.quick_reply && messageItem.message.quick_reply.payload){
 		// need to convert this to a switch at some point
 		fb.sendText(user_id,"Got a quick reply: "+messageItem.message.quick_reply.payload);
 }
