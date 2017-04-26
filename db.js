@@ -86,8 +86,20 @@ function getUserById(user_id, incomingMessage, callback) {
     });
 }
 
+function deleteUser(user_id){
+  User.findById(user_id, function (err, userObj) {
+    if (err) throw err;
+    // delete him
+    userObj.remove(function(err) {
+      if (err) throw err;
+      console.log('User successfully deleted!');
+    });
+  });
+}
+
 module.exports = {
     setUserFieldById:setUserFieldById,
     getUserById:getUserById,
-    getAndSetNewUser:getAndSetNewUser
+    getAndSetNewUser:getAndSetNewUser,
+    deleteUser:deleteUser
 };

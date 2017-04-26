@@ -82,7 +82,7 @@ function parseIncoming(user_id, messageItem, userObj) {
 				break;
 			case 'reset':
 				fb.sendText(user_id,"resetting your user db entry");
-				db.getAndSetNewUser(user_id);
+				db.deleteUser(user_id);
 				fb.sendText(user_id,"reset");
 				break;
 			default:
