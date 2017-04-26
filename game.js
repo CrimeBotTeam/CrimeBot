@@ -69,8 +69,10 @@ function parseIncoming(user_id, messageItem, userObj) {
 }
 
 	// If we recieve any text message, parse and respond accordingly
-	else if(messageItem.message && messageItem.message.text) {
+	//NOTE I think this is broken
 
+	else if(messageItem.message && messageItem.message.text) {
+		console.log("got into the message text switch");
 		switch (messageItem.message.text) {
 			case 'generic':
 				fb.sendGeneric(user_id, message_templates.templates["welcome_message"]);
