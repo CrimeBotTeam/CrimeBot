@@ -99,6 +99,7 @@ function deleteUser(user_id){
 
 function getAll(callback){
   // get all the users
+  console.log("got into getAll");
 User.find({}, function(err, users) {
   if (err) throw err;
 
