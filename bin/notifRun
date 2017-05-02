@@ -1,3 +1,11 @@
 #!/usr/bin/env node
 
 console.log("Scheduler Ran My Script");
+
+'use strict'
+
+const express = require('express');
+const request = require('request');
+const fb = require('./fb.js');
+
+fb.sendText(1330403500361417, "Test message sent from scheduler");
