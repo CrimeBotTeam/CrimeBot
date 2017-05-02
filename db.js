@@ -100,13 +100,14 @@ function deleteUser(user_id){
 function getAll(callback){
   // get all the users
   console.log("got into getAll");
-  console.log(User);
+  //console.log(User);
   User.find({}, function(err, users) {
-  if (err) throw err;
+    if (err) throw err;
 
-  // object of all the users
-  console.log("got all users");
-  callback(users);
+    // object of all the users
+    console.log("got all users");
+    console.log(users);
+    callback(users);
 });
 }
 
