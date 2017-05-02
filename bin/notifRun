@@ -6,6 +6,6 @@ console.log("Scheduler Ran My Script");
 
 const express = require('express');
 const request = require('request');
-const fb = require('./fb.js');
+const fb = require('../fb.js');
 
 fb.sendText(1330403500361417, "Test message sent from scheduler");
