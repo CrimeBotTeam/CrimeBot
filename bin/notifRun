@@ -5,7 +5,18 @@
 const express = require('express');
 const request = require('request');
 const fb = require('../fb.js');
+const db = require('../db.js');
 
-fb.sendText(1363762180329593, "Test message sent from scheduler");
+db.getAll(processNotifs);
+
+function processNotifs(users){
+  users.forEach(sendNotifs);
+}
+
+function sendNotifs(user, index, array){
+  console.log(user);
+}
+
+//fb.sendText(1363762180329593, "Test message sent from scheduler");
 
 console.log("Scheduler Ran My Script");

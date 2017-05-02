@@ -97,9 +97,21 @@ function deleteUser(user_id){
   });
 }
 
+function getAll(callback){
+  // get all the users
+User.find({}, function(err, users) {
+  if (err) throw err;
+
+  // object of all the users
+  console.log("got all users");
+  callback(users);
+});
+}
+
 module.exports = {
     setUserFieldById:setUserFieldById,
     getUserById:getUserById,
     getAndSetNewUser:getAndSetNewUser,
-    deleteUser:deleteUser
+    deleteUser:deleteUser,
+    getAll:getAll
 };
