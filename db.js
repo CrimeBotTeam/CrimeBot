@@ -103,13 +103,14 @@ function getAll(callback){
   //console.log(User);
   User.find({}, function(err, users) {
     if (err) {
+      console.log("got into error loop");
       console.log(err);
     } else {
 
     // object of all the users
     console.log("got all users");
     console.log(users);
-    
+
     }
     callback(users);
   });
