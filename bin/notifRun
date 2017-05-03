@@ -16,14 +16,14 @@ db.connect();
 //need to replace the console print with the actual actions we want to happen
 //note: should i use this async callback method instead of the
 //two different functions i have below?
-//db.getAll(function(users){
+db.getAll(function(users){
   //console.log(users);
+  processNotifs(users);
   //here is where i think should be each doig the actual work of
   //processing the notifs instead of sending them to a new function?
-//}
-//);
+}
+);
 
-db.getAll(processNotifs(users));
 
 function processNotifs(users){
   console.log(users);
