@@ -112,21 +112,16 @@ function getAll(callback){
   console.log("got into getAll");
 
   // get all the users
-  console.log(User);
-  
   User.find({}, function(err, users) {
     if (err) {
         console.log("tossed an error")
         console.log(err);
-    } else {
+    }});
     // object of all the users
     console.log("else got the users")
     console.log(users);
-  }
-  });
-    if(users){
+
     callback(users);
-  }
 }
 
 module.exports = {
