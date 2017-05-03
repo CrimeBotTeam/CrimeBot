@@ -86,7 +86,9 @@ function parseIncoming(user_id, messageItem, userObj) {
 				fb.sendText(user_id,"reset");
 				break;
 			case 'get':
-			db.getAll()
+				db.getAll(function(users){
+				  console.log(users);}
+				);
 				break;
 			default:
 			//sending a repeat back to user

@@ -108,28 +108,15 @@ function deleteUser(user_id){
   });
 }
 
-//function getAll(callback){
-  function getAll(){
-  // get all the users
-  console.log("got into getAll");
+function getAll(callback){
 
   // get all the users
+  console.log("getting all users");
 
-  User.find(function (err, users) {
-    if (err) return console.error(err);
-    console.log(users);
+  User.find({}, function(err, users) {
+    if (err){console.log(err);}
+    callback(users);
   });
-
-  // User.find({}, function(err, users) {
-  //   if (err) {
-  //       console.log("tossed an error")
-  //       console.log(err);
-  //   }});
-  //   // object of all the users
-  //   console.log("else got the users")
-  //   console.log(users);
-
-  //  callback(users);
 }
 
 module.exports = {
