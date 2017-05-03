@@ -3,6 +3,7 @@
 'use strict'
 
 const mongoose = require('mongoose');
+
 const User = mongoose.model('User', {
   _id: String,
   nickname: String,
@@ -112,14 +113,20 @@ function getAll(callback){
   console.log("got into getAll");
 
   // get all the users
-  User.find({}, function(err, users) {
-    if (err) {
-        console.log("tossed an error")
-        console.log(err);
-    }});
-    // object of all the users
-    console.log("else got the users")
+
+  User.find(function (err, users) {
+    if (err) return console.error(err);
     console.log(users);
+  });
+
+  // User.find({}, function(err, users) {
+  //   if (err) {
+  //       console.log("tossed an error")
+  //       console.log(err);
+  //   }});
+  //   // object of all the users
+  //   console.log("else got the users")
+  //   console.log(users);
 
     callback(users);
 }
