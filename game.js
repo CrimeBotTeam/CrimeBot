@@ -85,6 +85,9 @@ function parseIncoming(user_id, messageItem, userObj) {
 				db.deleteUser(user_id);
 				fb.sendText(user_id,"reset");
 				break;
+			//case 'get all':
+			//db.getAll()
+				//break;
 			default:
 			//sending a repeat back to user
 			fb.sendText(user_id, messageItem.message.text+" from heroku");

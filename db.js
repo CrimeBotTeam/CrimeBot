@@ -11,6 +11,16 @@ const User = mongoose.model('User', {
   current_state: String
 });
 
+function connect(){
+  mongoose.connect((process.env.MONGODB_URI),function(err){
+  	if (err) {
+  		console.error(err);
+  		process.exit(1);
+  	}
+  	console.log("connected to " + process.env.MONGODB_URI);
+  });
+}
+
 /**
  * Asynchronous method
  * If userId doesn't exist in DB, create a new doc. Else, just update key->val.
@@ -118,5 +128,6 @@ module.exports = {
     getUserById:getUserById,
     getAndSetNewUser:getAndSetNewUser,
     deleteUser:deleteUser,
-    getAll:getAll
+    getAll:getAll,
+    connect:connect
 };

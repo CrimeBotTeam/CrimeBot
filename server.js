@@ -14,13 +14,7 @@ const verify_token = process.env.VERIFY_TOKEN;
 
 app.set('port', (process.env.PORT || 3000));
 
-mongoose.connect((process.env.MONGODB_URI),function(err){
-	if (err) {
-		console.error(err);
-		process.exit(1);
-	}
-	console.log("connected to " + process.env.MONGODB_URI);
-});
+db.connect();
 
 // Parse application/json
 app.use(bodyParser.json());
@@ -59,7 +53,7 @@ function webhookListener(req, res) {
 	for (let messagingItem of messaging_events) {
 		let user_id = messagingItem.sender.id;
     //HERE - this is the key function. It sends out the info to see if we have
-    //a user. if not it will make a new user. either way it will pass the 
+    //a user. if not it will make a new user. either way it will pass the
     //message and the user info to the game.parseIncoming callback function
     //where the game logic code decides what to do
 		db.getUserById(user_id, messagingItem, game.parseIncoming);

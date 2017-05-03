@@ -8,13 +8,7 @@ const fb = require('../fb.js');
 const db = require('../db.js');
 var mongoose = require('mongoose');
 
-mongoose.connect((process.env.MONGODB_URI),function(err){
-	if (err) {
-		console.error(err);
-		process.exit(1);
-	}
-	console.log("connected to " + process.env.MONGODB_URI);
-});
+db.connect();
 
 //db.getAll(processNotifs);
 db.getAll();
