@@ -101,19 +101,16 @@ function getAll(){
   // get all the users
   console.log("got into getAll");
   //console.log(User);
-  User.find({}, function(err, users) {
-  //  if (err) {
-    //  console.log("got into error loop");
-      //console.log(err);
-    //} else {
+  // get the user starlord55
+  User.find({ nickname: 'jonpaul' }, function(err, user) {
+    if (err) throw err;
 
-    // object of all the users
-    console.log("got all users");
-    console.log(users);
+    // object of the user
+    console.log(user);
+});
 
     //}
     //callback(users);
-  });
 }
 
 module.exports = {
