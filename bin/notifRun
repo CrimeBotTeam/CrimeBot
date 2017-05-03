@@ -6,8 +6,18 @@ const express = require('express');
 const request = require('request');
 const fb = require('../fb.js');
 const db = require('../db.js');
+var mongoose = require('mongoose');
 
-db.getAll(processNotifs);
+mongoose.connect((process.env.MONGODB_URI),function(err){
+	if (err) {
+		console.error(err);
+		process.exit(1);
+	}
+	console.log("connected to " + process.env.MONGODB_URI);
+});
+
+//db.getAll(processNotifs);
+db.getAll();
 
 function processNotifs(users){
   console.log("got to processNotifs");
