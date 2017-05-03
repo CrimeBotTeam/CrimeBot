@@ -112,6 +112,8 @@ function getAll(callback){
   console.log("got into getAll");
 
   // get all the users
+  console.log(User);
+  
   User.find({}, function(err, users) {
     if (err) {
         console.log("tossed an error")
