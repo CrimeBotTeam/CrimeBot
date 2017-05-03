@@ -113,13 +113,16 @@ function getAll(callback){
 
   // get all the users
   User.find({}, function(err, users) {
-    if (err) throw err;
-
+    if (err) {
+        console.log(err);
+    } else {
     // object of all the users
     console.log(users);
+  }
   });
-
+    if(users){
     callback(users);
+  }
 }
 
 module.exports = {
