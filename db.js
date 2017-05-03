@@ -97,7 +97,7 @@ function deleteUser(user_id){
   });
 }
 
-function getAll(callback){
+function getAll(){
   // get all the users
   console.log("got into getAll");
   //console.log(User);
@@ -112,7 +112,7 @@ function getAll(callback){
     console.log(users);
 
     }
-    callback(users);
+    //callback(users);
   });
 }
 
