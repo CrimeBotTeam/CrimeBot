@@ -10,17 +10,15 @@ var mongoose = require('mongoose');
 
 db.connect();
 
-//db.getAll(processNotifs);
-db.getAll();
+db.getAll(processNotifs);
 
 function processNotifs(users){
-  console.log("got to processNotifs");
+  console.log("processing Notifs");
   users.forEach(sendNotifs);
 }
 
 function sendNotifs(user, index, array){
-  console.log("got to sendNotifs");
-  console.log(user);
+  console.log("try to sendNotifs to " + user);
 }
 
 //fb.sendText(1363762180329593, "Test message sent from scheduler");

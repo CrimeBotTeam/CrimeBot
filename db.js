@@ -107,20 +107,19 @@ function deleteUser(user_id){
   });
 }
 
-function getAll(){
+function getAll(callback){
   // get all the users
   console.log("got into getAll");
-  //console.log(User);
-  // get the user starlord55
-  User.find({ nickname: 'jonpaul' }, function(err, user) {
+
+  // get all the users
+  User.find({}, function(err, users) {
     if (err) throw err;
 
-    // object of the user
-    console.log(user);
-});
+    // object of all the users
+    console.log(users);
+  });
 
-    //}
-    //callback(users);
+    callback(users);
 }
 
 module.exports = {
