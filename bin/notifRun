@@ -26,13 +26,13 @@ db.getAll(function(users){
 
 
 function processNotifs(users){
-  console.log(users);
+  //console.log(users);
   console.log("processing Notifs");
   users.forEach(sendNotifs);
 }
 
 function sendNotifs(user, index, array){
-  console.log("try to sendNotifs to " + user);
+  console.log("try to sendNotifs to " + user.nickname);
 }
 
 //fb.sendText(1363762180329593, "Test message sent from scheduler");
