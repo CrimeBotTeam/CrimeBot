@@ -4,9 +4,10 @@
 
 const express = require('express');
 const request = require('request');
+var mongoose = require('mongoose');
 const fb = require('../fb.js');
 const db = require('../db.js');
-var mongoose = require('mongoose');
+
 
 db.connect();
 
