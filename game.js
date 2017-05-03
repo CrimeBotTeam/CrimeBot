@@ -89,6 +89,7 @@ function parseIncoming(user_id, messageItem, userObj) {
 				db.getAll(function(users){
 				  console.log(users);}
 				);
+				fb.sendText(user_id,"sending full db to console log");
 				break;
 			default:
 			//sending a repeat back to user
