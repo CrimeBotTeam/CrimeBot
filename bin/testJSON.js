@@ -9,3 +9,5 @@ var cardsJSON = require('../data/action_cards_starter.json');
 var actionDeck = JSON.parse(cardsJSON);
 
 console.log(actionDeck);
+
+//check error in json file (From compiler)
