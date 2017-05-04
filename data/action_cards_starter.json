@@ -1,0 +1,54 @@
+{
+  "action_cards_starter" : [
+    {
+      "job_id" : 1,
+      "name" : "Rob an Armored Car",
+      "duration" : 30,
+      "type" : "crime",
+      "set" : "starter",
+      "reward_cash" : 30,
+      "reward_premium" : "",
+      "reward_loot" : ""
+    },
+    {
+      "job_id" : 2,
+      "name" : "Steal Guns from Warehouse",
+      "duration" : 180,
+      "type" : "crime",
+      "set" : "starter",
+      "reward_cash" : 1800,
+      "reward_premium" : "",
+      "reward_loot" : ""
+    },
+    {
+      "job_id" : 3,
+      "name" : "Collect Protection Money",
+      "duration" : 10,
+      "type" : "crime",
+      "set" : "starter",
+      "reward_cash" : 100,
+      "reward_premium" : "",
+      "reward_loot" : ""
+    },
+    {
+      "job_id" : 4,
+      "name" : "Intimidate Rivals",
+      "duration" : 60,
+      "type" : "crime",
+      "set" : "starter",
+      "reward_cash" : 600,
+      "reward_premium" : "",
+      "reward_loot" : ""
+    },
+    {
+      "job_id" : 5,
+      "name" : "Smuggle Contraband",
+      "duration" : 120,
+      "type" : "crime",
+      "set" : "starter",
+      "reward_cash" : 1200,
+      "reward_premium" : "",
+      "reward_loot" : ""
+    }
+  ]
+}
