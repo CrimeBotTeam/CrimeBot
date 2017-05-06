@@ -1,4 +1,5 @@
 node_modules
 test_text.txt
+test_text2.txt
 .env
 Procfile
