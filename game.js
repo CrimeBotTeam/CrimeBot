@@ -50,12 +50,13 @@ function parseIncoming(user_id, messageItem, userObj) {
 				fb.sendGeneric(user_id,message_templates.templates["tutorial_template"]);
 				break;
 			case "CAPO_CRAZY_IVAN_CONTACT":
+				player.drawFromActionDeck();
 				fb.sendText(user_id,"I'm free boss, what do you want me to do?");
-					fb.sendGeneric(user_id,message_templates.templates["capo_job_template"]);
-					break;
+				fb.sendGeneric(user_id,message_templates.templates["capo_job_template"]);
+				break;
 			case "DB_PAYLOAD":
-					fb.sendText(user_id,""+userObj);
-					break;
+				fb.sendText(user_id,""+userObj);
+				break;
 			default:
         fb.sendText(user_id,"you want to "+button_payload_state);
         break;
