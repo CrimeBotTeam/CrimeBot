@@ -93,7 +93,7 @@ function parseIncoming(user_id, messageItem, userObj) {
 				break;
 			default:
 			//sending a repeat back to user
-			fb.sendText(user_id, messageItem.message.text+" from heroku");
+			fb.sendText(user_id, "echo " + messageItem.message.text);
 		}
 
 	}
