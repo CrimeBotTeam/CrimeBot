@@ -50,12 +50,16 @@ function parseIncoming(user_id, messageItem, userObj) {
 				fb.sendGeneric(user_id,message_templates.templates["tutorial_template"]);
 				break;
 			case "CAPO_CRAZY_IVAN_CONTACT":
+			//ok this is super bad and should be broken into a better scoped function
+			//i dont like how often im getting cards and passing cards feels like hot potato
+				var these_cards = player.drawFromActionDeck();
 				fb.sendText(user_id,"I'm free boss, what do you want me to do?");
-					fb.sendGeneric(user_id,message_templates.templates["capo_job_template"]);
-					break;
+				//fb.sendGeneric(user_id,message_templates.templates["capo_job_template"]);
+				fb.sendGeneric(user_id,message_templates.capo_job_template(these_cards));
+				break;
 			case "DB_PAYLOAD":
-					fb.sendText(user_id,""+userObj);
-					break;
+				fb.sendText(user_id,""+userObj);
+				break;
 			default:
         fb.sendText(user_id,"you want to "+button_payload_state);
         break;
@@ -93,7 +97,7 @@ function parseIncoming(user_id, messageItem, userObj) {
 				break;
 			default:
 			//sending a repeat back to user
-			fb.sendText(user_id, messageItem.message.text+" from heroku");
+			fb.sendText(user_id, "echo " + messageItem.message.text);
 		}
 
 	}

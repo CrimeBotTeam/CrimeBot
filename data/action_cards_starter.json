@@ -49,6 +49,46 @@
       "reward_cash" : 1200,
       "reward_premium" : "",
       "reward_loot" : ""
+    },
+    {
+      "job_id" : 6,
+      "name" : "Take out a Rogue Cop",
+      "duration" : 360,
+      "type" : "crime",
+      "set" : "starter",
+      "reward_cash" : 3600,
+      "reward_premium" : "",
+      "reward_loot" : ""
+    },
+    {
+      "job_id" : 7,
+      "name" : "Collect on a Loan",
+      "duration" : 10,
+      "type" : "crime",
+      "set" : "starter",
+      "reward_cash" : 100,
+      "reward_premium" : "",
+      "reward_loot" : ""
+    },
+    {
+      "job_id" : 8,
+      "name" : "Rob a Jewelry Store",
+      "duration" : 90,
+      "type" : "crime",
+      "set" : "starter",
+      "reward_cash" : 900,
+      "reward_premium" : "",
+      "reward_loot" : ""
+    },
+    {
+      "job_id" : 9,
+      "name" : "Hijack a Semi",
+      "duration" : 40,
+      "type" : "crime",
+      "set" : "starter",
+      "reward_cash" : 400,
+      "reward_premium" : "",
+      "reward_loot" : ""
     }
   ]
 }
