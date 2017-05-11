@@ -242,8 +242,57 @@ let templates = {
   }
 };
 
+function capo_job_template(cards){
+	//console.log("cards from template script");
+	//console.log(cards[1]);
+	//console.log(cards[2]);
+	//console.log(cards[3]);
+	//var cards = these_cards;
+	return {
+	    "attachment":{
+	      "type":"template",
+	      "payload":{
+	        "template_type":"list",
+					"top_element_style": "compact",
+					"elements":[
+						{
+							"title":cards[1].name,
+							"subtitle":"\u231a "+cards[1].duration,
+							"buttons":[
+			          {
+			            "type":"postback",
+									"title":"Do Job",
+									"payload":"JOB_"+cards[1].job_id
+			          }]
+						},
+						{
+							"title":cards[2].name,
+							"subtitle":"\u231a "+cards[2].duration,
+							"buttons":[
+			          {
+			            "type":"postback",
+									"title":"Do Job",
+									"payload":"JOB_"+cards[2].job_id
+			          }]
+						},
+						{
+							"title":cards[3].name,
+							"subtitle":"\u231a "+cards[3].duration,
+							"buttons":[
+			          {
+			            "type":"postback",
+									"title":"Do Job",
+									"payload":"JOB_"+cards[3].job_id
+			          }]
+						}
+					]
+	      }
+	    }
+	  }
+}
 
 
 module.exports = {
-	templates: templates
+	templates: templates,
+	capo_job_template: capo_job_template
 };

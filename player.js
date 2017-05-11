@@ -30,12 +30,11 @@ function drawFromActionDeck(){
   }
 
   //print out cards to console to confirm it works
-  console.log(nums);
-  console.log(nums[0]+" & "+nums[1]+" & "+nums[2]);
+  console.log("cards from player script");
   console.log(cards);
 
   //send cards back to game function
-
+  return cards;
 }
 
 function randomIntInc (low, high) {
