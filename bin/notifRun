@@ -27,6 +27,7 @@ function processNotifs(users){
 
 function sendNotifs(user, index, array){
   console.log("try to sendNotifs to " + user.nickname);
+  fb.sendText(user._id, "Test message sent from scheduler");
 }
 
 //fb.sendText(1363762180329593, "Test message sent from scheduler");
