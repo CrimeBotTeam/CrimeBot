@@ -62,7 +62,7 @@ let templates = {
 	          {
 	            "type":"postback",
 							"title":"Contact Crazy Ivan",
-	            "payload":"CAPO_CRAZY_IVAN_CONTACT"
+	            "payload":"CONTACT_CRAZY_IVAN"
 	          }
 	        ]
 					},
@@ -74,7 +74,7 @@ let templates = {
 						{
 							"type":"postback",
 							"title":"Contact Smoothie",
-							"payload":"CAPO_SMOOTHIE_CONTACT"
+							"payload":"CONTACT_SMOOTHIE"
 						}
 					]
 					},
@@ -86,7 +86,7 @@ let templates = {
 	          {
 	            "type":"postback",
 							"title":"Contact Moonlight",
-	            "payload":"CAPO_MOONLIGHT_CONTACT"
+	            "payload":"CONTACT_MOONLIGHT"
 	          }
 	        ]
 					},
@@ -98,7 +98,7 @@ let templates = {
 	          {
 	            "type":"postback",
 							"title":"Contact Triple Shot",
-	            "payload":"CAPO_TRIPLESHOT_CONTACT"
+	            "payload":"CONTACT_TRIPLESHOT"
 	          }
 	        ]
 					},
@@ -110,7 +110,7 @@ let templates = {
 	          {
 	            "type":"postback",
 							"title":"Contact Mister Juice",
-	            "payload":"CAPO_MISTER_JUICE_CONTACT"
+	            "payload":"CONTACT_MISTER_JUICE"
 	          }
 	        ]
 					}

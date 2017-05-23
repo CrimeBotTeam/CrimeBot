@@ -27,6 +27,16 @@ function parseIncoming(user_id, messageItem, userObj) {
 
     console.log("Received postback "+button_payload_state);
 
+		console.log(button_payload_state.substring(0, 6));
+
+if(button_payload_state.substring(0, 7) == "CONTACT"){
+	//ok this is super bad and should be broken into a better scoped function
+	//i dont like how often im getting cards and passing cards feels like hot potato
+		var these_cards = player.drawFromActionDeck();
+		fb.sendText(user_id,"I'm free boss, what do you want me to do?");
+		fb.sendGeneric(user_id,message_templates.capo_job_template(these_cards));
+} else {
+
 		switch (button_payload_state) {
 			case "get_options":
 				fb.sendGeneric(user_id, message_templates.templates["options_message"]);
@@ -49,14 +59,6 @@ function parseIncoming(user_id, messageItem, userObj) {
 			case "TUTORIAL_PAYLOAD":
 				fb.sendGeneric(user_id,message_templates.templates["tutorial_template"]);
 				break;
-			case "CAPO_CRAZY_IVAN_CONTACT":
-			//ok this is super bad and should be broken into a better scoped function
-			//i dont like how often im getting cards and passing cards feels like hot potato
-				var these_cards = player.drawFromActionDeck();
-				fb.sendText(user_id,"I'm free boss, what do you want me to do?");
-				//fb.sendGeneric(user_id,message_templates.templates["capo_job_template"]);
-				fb.sendGeneric(user_id,message_templates.capo_job_template(these_cards));
-				break;
 			case "DB_PAYLOAD":
 				fb.sendText(user_id,""+userObj);
 				break;
@@ -64,6 +66,7 @@ function parseIncoming(user_id, messageItem, userObj) {
         fb.sendText(user_id,"you want to "+button_payload_state);
         break;
 		}
+	}
 	}
 
 	//if user sent with a quick reply
