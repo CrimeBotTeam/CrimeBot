@@ -1,4 +1,4 @@
-//code to interact and talk to facebook messenger. 
+//code to interact and talk to facebook messenger.
 //listening and verification is in the main server.js
 
 'use strict'
@@ -14,7 +14,7 @@ const verify_token = process.env.VERIFY_TOKEN;
 // Send text message
 function sendText(user_id, text) {
 	let messageData = { text:text };
-	
+
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {access_token:token},
@@ -26,6 +26,23 @@ function sendText(user_id, text) {
 			message: messageData
 		}
 	}, callbackResponse);
+}
+
+// Send text message with callback
+function sendTextAsync(user, text, callback) {
+	let messageData = { text:text };
+
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {
+				id:user
+			},
+			message: messageData
+		}
+	}, callback);
 }
 
 // Send generic template msg (could be options, images, etc.)
@@ -58,5 +75,6 @@ function debugTest(){
 module.exports = {
 	sendText:sendText,
 	sendGeneric:sendGeneric,
-  debugTest:debugTest
+  debugTest:debugTest,
+	sendTextAsync:sendTextAsync
 };

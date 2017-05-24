@@ -7,29 +7,77 @@ const request = require('request');
 var mongoose = require('mongoose');
 const fb = require('../fb.js');
 const db = require('../db.js');
+var async = require('async');
 
+var users = [];
 
 db.connect();
 
 //using the db to async get all users of the database, then
 //have inline callback function print it out to the console
-db.getAll(function(users){
-  processNotifs(users);
+db.getAll(function(db_users){
+  users = db_users;
+  processNotifs();
+    }
+  )
+
+function processNotifs(){
+  //console.log(users);
+  async.each(
+    users,
+    function(thisuser, callback){
+      console.log("try to sendNotifs to " + thisuser.nickname);
+      console.log("try to sendNotifs to " + thisuser._id);
+      sendNotif(thisuser._id, function (){
+      // Async call is done, alert via callback
+      callback();
+      });
+    },
+    function(error) {
+      	if (error) {
+      		console.log('Error sending messages: ', error)
+      	}
+        console.log("all each done");
+        process.exit();
+    }
+  );
 }
-);
 
-
-function processNotifs(users){
-  console.log("processing Notifs");
-  users.forEach(sendNotifs);
-  process.exit();
+function sendNotif(id, callback){
+  fb.sendTextAsync(id, "Test message sent from scheduler",function (){
+  // Async call is done, alert via callback
+  console.log("in the callback of sendnotif");
+  callback();
+  });
 }
 
-function sendNotifs(user, index, array){
-  console.log("try to sendNotifs to " + user.nickname);
-  fb.sendText(user._id, "Test message sent from scheduler");
-}
+//db.getAll(function(users){
+  //async.each(users, function(thisuser,callback){
+    //console.log("try to sendNotifs to " + thisuser.nickname);
+    //console.log("try to sendNotifs to " + thisuser._id);
+    //fb.sendTextAsync(thisuser._id, "Test message sent from scheduler", callback);
+    //callback();
+    //ok feeling stuck - either i remove the callback call and the messages are sent
+    //or i leave it in and process exit is called but the messages never go
+  //},function(err){
+    //console.log("all each done");
+    //process.exit();
+//});
+//})
 
-//fb.sendText(1363762180329593, "Test message sent from scheduler");
+//function processNotifs(users){
+  //console.log("processing Notifs");
+  //users.forEach(sendNotifs);
+  //process.exit();
+//}
+
+//function sendNotifs(user, index, array){
+  //console.log("try to sendNotifs to " + user.nickname);
+  //console.log("try to sendNotifs to " + user._id);
+  //fb.sendText(user._id, "Test message sent from scheduler");
+  //fb.sendText(1673124326060857, "Test message sent from scheduler");
+//}
+
+//fb.sendText(1673124326060857, "Test message sent from scheduler");
 
 console.log("Scheduler Ran My Script");
