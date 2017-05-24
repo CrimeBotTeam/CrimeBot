@@ -5,7 +5,7 @@
 const mongoose = require('mongoose');
 
 const User = mongoose.model('User', {
-  _id: String,
+  _id: Number,
   nickname: String,
   money: Number,
   xp: Number,
