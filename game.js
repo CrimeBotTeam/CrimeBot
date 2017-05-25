@@ -26,8 +26,8 @@ function parseIncoming(user_id, messageItem, userObj) {
 		var button_payload_state = messageItem.postback.payload;
 
     console.log("Received postback "+button_payload_state);
-
-		console.log(button_payload_state.substring(0, 6));
+		console.log(player.capos);
+		//console.log(button_payload_state.substring(0, 6));
 
 if(button_payload_state.substring(0, 7) == "CONTACT"){
 	//ok this is super bad and should be broken into a better scoped function
@@ -35,8 +35,9 @@ if(button_payload_state.substring(0, 7) == "CONTACT"){
 		var these_cards = player.drawFromActionDeck();
 		fb.sendText(user_id,"I'm free boss, what do you want me to do?");
 		fb.sendGeneric(user_id,message_templates.capo_job_template(these_cards));
+} else if (button_payload_state == "CAPOS_PAYLOAD") {
+		fb.sendGeneric(user_id,message_templates.capo_list_template(player.capos));
 } else {
-
 		switch (button_payload_state) {
 			case "get_options":
 				fb.sendGeneric(user_id, message_templates.templates["options_message"]);
@@ -52,9 +53,6 @@ if(button_payload_state.substring(0, 7) == "CONTACT"){
 				break;
 			case "NET_WORTH_PAYLOAD":
 				fb.sendGeneric(user_id,message_templates.templates["quick_reply_test"]);
-				break;
-			case "CAPOS_PAYLOAD":
-				fb.sendGeneric(user_id,message_templates.templates["capo_list_static"]);
 				break;
 			case "TUTORIAL_PAYLOAD":
 				fb.sendGeneric(user_id,message_templates.templates["tutorial_template"]);

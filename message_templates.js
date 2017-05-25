@@ -48,76 +48,6 @@ let templates = {
 			}
 		}
 	},
-	"capo_list_static": {
-		"attachment": {
-			"type": "template",
-			"payload": {
-				"template_type": "generic",
-				"elements": [
-					{
-					"title": "Crazy Ivan",
-					"subtitle": "\"Robberies are my speciality\"",
-					"image_url":"https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_eben.jpg",
-					"buttons":[
-	          {
-	            "type":"postback",
-							"title":"Contact Crazy Ivan",
-	            "payload":"CONTACT_CRAZY_IVAN"
-	          }
-	        ]
-					},
-					{
-					"title": "Smoothie",
-					"subtitle": "\"Business dont run itself, boss\"",
-					"image_url":"https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_dave.jpg",
-					"buttons":[
-						{
-							"type":"postback",
-							"title":"Contact Smoothie",
-							"payload":"CONTACT_SMOOTHIE"
-						}
-					]
-					},
-					{
-					"title": "Moonlight Maude",
-					"subtitle": "\"At Night, I get away with anything\"",
-					"image_url":"https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_erin.jpg",
-					"buttons":[
-	          {
-	            "type":"postback",
-							"title":"Contact Moonlight",
-	            "payload":"CONTACT_MOONLIGHT"
-	          }
-	        ]
-					},
-					{
-					"title": "Triple Shot",
-					"subtitle": "\"Twice the speed, twice the payoff\"",
-					"image_url":"https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_jonpaul.jpg",
-					"buttons":[
-	          {
-	            "type":"postback",
-							"title":"Contact Triple Shot",
-	            "payload":"CONTACT_TRIPLESHOT"
-	          }
-	        ]
-					},
-					{
-					"title": "Mister Juice",
-					"subtitle": "\"I drink your milkshake\"",
-					"image_url":"https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_lean.jpg",
-					"buttons":[
-	          {
-	            "type":"postback",
-							"title":"Contact Mister Juice",
-	            "payload":"CONTACT_MISTER_JUICE"
-	          }
-	        ]
-					}
-				]
-			}
-		}
-	},
 	"family_options":{
     "attachment":{
       "type":"template",
@@ -242,6 +172,77 @@ let templates = {
   }
 };
 
+function capo_list_template(capo_list){
+	return{
+		"attachment": {
+			"type": "template",
+			"payload": {
+				"template_type": "generic",
+				"elements": [
+					{
+					"title": capo_list[0].name,
+					"subtitle": "\""+capo_list[0].tagline+"\"",
+					"image_url":capo_list[0].image,
+					"buttons":[
+	          {
+	            "type":"postback",
+							"title":"Contact "+capo_list[0].name,
+	            "payload":"CONTACT_"+capo_list[0].capo_id
+	          }
+	        ]
+					},
+					{
+					"title": capo_list[1].name,
+					"subtitle": "\""+capo_list[1].tagline+"\"",
+					"image_url":capo_list[1].image,
+					"buttons":[
+	          {
+	            "type":"postback",
+							"title":"Contact "+capo_list[1].name,
+	            "payload":"CONTACT_"+capo_list[1].capo_id
+	          }
+	        ]
+					},
+					{
+					"title": capo_list[2].name,
+					"subtitle": "\""+capo_list[2].tagline+"\"",
+					"image_url":capo_list[2].image,
+					"buttons":[
+	          {
+	            "type":"postback",
+							"title":"Contact "+capo_list[2].name,
+	            "payload":"CONTACT_"+capo_list[2].capo_id
+	          }
+	        ]
+					},{
+					"title": capo_list[3].name,
+					"subtitle": "\""+capo_list[3].tagline+"\"",
+					"image_url":capo_list[3].image,
+					"buttons":[
+	          {
+	            "type":"postback",
+							"title":"Contact "+capo_list[3].name,
+	            "payload":"CONTACT_"+capo_list[3].capo_id
+	          }
+	        ]
+					},{
+					"title": capo_list[4].name,
+					"subtitle": "\""+capo_list[4].tagline+"\"",
+					"image_url":capo_list[4].image,
+					"buttons":[
+	          {
+	            "type":"postback",
+							"title":"Contact "+capo_list[4].name,
+	            "payload":"CONTACT_"+capo_list[4].capo_id
+	          }
+	        ]
+					}
+				]
+			}
+		}
+	}
+}
+
 function capo_job_template(cards){
 	//console.log("cards from template script");
 	//console.log(cards[1]);
@@ -294,5 +295,6 @@ function capo_job_template(cards){
 
 module.exports = {
 	templates: templates,
-	capo_job_template: capo_job_template
+	capo_job_template: capo_job_template,
+	capo_list_template: capo_list_template
 };

@@ -1,0 +1,34 @@
+{
+  "capos_database" : [
+    {
+      "capo_id" : 1,
+      "name" : "Crazy Ivan",
+      "tagline" : "Robberies are my speciality",
+      "image" : "https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_eben.jpg"
+    },
+    {
+      "capo_id" : 2,
+      "name" : "Smoothie",
+      "tagline" : "Business dont run itself, boss",
+      "image" : "https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_dave.jpg"
+    },
+    {
+      "capo_id" : 3,
+      "name" : "Moonlight Maude",
+      "tagline" : "At Night, I get away with anything",
+      "image" : "https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_erin.jpg"
+    },
+    {
+      "capo_id" : 4,
+      "name" : "Triple Shot",
+      "tagline" : "Twice the speed, twice the payoff",
+      "image" : "https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_jonpaul.jpg"
+    },
+    {
+      "capo_id" : 5,
+      "name" : "Mister Juice",
+      "tagline" : "I drink your milkshake",
+      "image" : "https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_lean.jpg"
+    }
+  ]
+}

@@ -8,8 +8,12 @@ const db = require('./db.js');
 const fb = require('./fb.js');
 
 //eventually need to make this less static
-var action_deck_file = require('./data/action_cards_starter.json');
-var action_deck = action_deck_file.action_cards_starter;
+var action_deck = require('./data/action_cards_starter.json').action_cards_starter;
+var capos_database = require('./data/capos_database.json').capos_database;
+
+//going to straight up copy the full 5 item database into the player's capo list for now
+var capos = capos_database;
+
 
 function addMoney(user_id, userObj, amount){
   console.log("got to addMoney function");
@@ -43,5 +47,6 @@ function randomIntInc (low, high) {
 
 module.exports = {
 	addMoney:addMoney,
-  drawFromActionDeck:drawFromActionDeck
+  drawFromActionDeck:drawFromActionDeck,
+  capos:capos
 };
