@@ -9,7 +9,8 @@ const User = mongoose.model('User', {
   nickname: String,
   money: Number,
   xp: Number,
-  current_state: String
+  current_state: String,
+  capos: Array
 });
 
 function connect(){
@@ -47,9 +48,61 @@ function setUserFieldById(user_id, key, val) {
     });
 }
 
+function setUserFieldById(user_id, key, val) {
+    User.findById(user_id, function (err, userObj) {
+        if (err) {
+            console.log(err);
+            // User is found. modify key->val
+        } else if (userObj) {
+            userObj[key] = val;
+            userObj.save(function (err) {
+            });
+            console.log('User '+user_id+' exists. Saving current ' +key+' state:', userObj[key]);
+        }
+        // New user. Add it to module
+        else {
+            getAndSetNewUser(user_id);
+        }
+    });
+}
+
+function setUserFieldByIdReturnObj(user_id, key, val, callback) {
+    User.findById(user_id, function (err, userObj) {
+        if (err) {
+            console.log(err);
+            // User is found. modify key->val
+        } else if (userObj) {
+            userObj[key] = val;
+            userObj.save(function (err) {
+              console.log("finished saving. going to callback");
+              callback(userObj);
+            });
+            console.log('User '+user_id+' exists. Saving current ' +key+' state:', userObj[key]);
+        }
+        // New user. Add it to module
+        else {
+            getAndSetNewUser(user_id);
+        }
+    });
+}
 
 
-//NEED TO ADD A GET USER FIELD METHOD
+//GET USER FIELD METHOD
+function getUserFieldById(user_id, key) {
+    User.findById(user_id, function (err, userObj) {
+        if (err) {
+            console.log(err);
+            // User is found. get key->val
+        } else if (userObj) {
+            return userObj[key];
+            console.log('User '+user_id+' exists. Returning ' +key+' state:', userObj[key]);
+        }
+        // New user. Add it to module
+        else {
+            getAndSetNewUser(user_id);
+        }
+    });
+}
 
 /**
  * Asynchronous method
@@ -63,7 +116,8 @@ function getAndSetNewUser(user_id) {
         "nickname": "",
         "money": 0,
         "xp": 0,
-        "current_state": "welcome_message"
+        "current_state": "welcome_message",
+        "capos": []
     });
     user.save(function (err, userObj) {
         if (err) {
@@ -97,6 +151,23 @@ function getUserById(user_id, incomingMessage, callback) {
     });
 }
 
+function getUserObj(user_id, callback) {
+    var result = null;
+    //Lets try to Find a user
+    User.findById(user_id, function (err, userObj) {
+        if (err) {
+            console.log(err);
+        } else if (userObj) {
+            result = userObj;
+            console.log('User ' + user_id + ' exists. Getting current user object:', userObj);
+        } else {
+            console.log('User not found!');
+        }
+        // After getting user object, forward to callback method.
+        callback(userObj);
+    });
+}
+
 function deleteUser(user_id){
   User.findById(user_id, function (err, userObj) {
     if (err) throw err;
@@ -122,8 +193,11 @@ function getAll(callback){
 module.exports = {
     setUserFieldById:setUserFieldById,
     getUserById:getUserById,
+    getUserObj:getUserObj,
+    getUserFieldById:getUserFieldById,
     getAndSetNewUser:getAndSetNewUser,
     deleteUser:deleteUser,
+    setUserFieldByIdReturnObj:setUserFieldByIdReturnObj,
     getAll:getAll,
     connect:connect
 };

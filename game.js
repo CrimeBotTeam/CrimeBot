@@ -9,6 +9,9 @@ const fb = require('./fb.js');
 const player = require('./player.js');
 const message_templates = require('./message_templates.js');
 
+var userObj; //need to create way to keep this updated after Db action
+
+//really need to update this parseIncoming field. its still from the sample code.
 /**
  * Parse ICM based on user postback, and depending on user current state. Send relevant OGM
  * @param user_id
@@ -26,17 +29,28 @@ function parseIncoming(user_id, messageItem, userObj) {
 		var button_payload_state = messageItem.postback.payload;
 
     console.log("Received postback "+button_payload_state);
-
-		console.log(button_payload_state.substring(0, 6));
+		//console.log(button_payload_state.substring(0, 6));
 
 if(button_payload_state.substring(0, 7) == "CONTACT"){
+	if(button_payload_state == "CONTACT_0"){
+		fb.sendText(user_id, "Hire a Capo first to do jobs");
+		fb.sendText(user_id, "Contact a different capo?");
+		fb.sendGeneric(user_id,message_templates.capo_list_template(userObj.capos));
+	} else {
 	//ok this is super bad and should be broken into a better scoped function
 	//i dont like how often im getting cards and passing cards feels like hot potato
 		var these_cards = player.drawFromActionDeck();
 		fb.sendText(user_id,"I'm free boss, what do you want me to do?");
 		fb.sendGeneric(user_id,message_templates.capo_job_template(these_cards));
+	}
+} else if (button_payload_state == "CAPOS_PAYLOAD") {
+		console.log(userObj.capos);
+		if (userObj.capos[0] != null) {
+			fb.sendGeneric(user_id,message_templates.capo_list_template(userObj.capos));
+	} else {
+		fb.sendGeneric(user_id, message_templates.templates["quick_reply_no_capos"]);
+	}
 } else {
-
 		switch (button_payload_state) {
 			case "get_options":
 				fb.sendGeneric(user_id, message_templates.templates["options_message"]);
@@ -53,14 +67,15 @@ if(button_payload_state.substring(0, 7) == "CONTACT"){
 			case "NET_WORTH_PAYLOAD":
 				fb.sendGeneric(user_id,message_templates.templates["quick_reply_test"]);
 				break;
-			case "CAPOS_PAYLOAD":
-				fb.sendGeneric(user_id,message_templates.templates["capo_list_static"]);
-				break;
 			case "TUTORIAL_PAYLOAD":
 				fb.sendGeneric(user_id,message_templates.templates["tutorial_template"]);
 				break;
 			case "DB_PAYLOAD":
 				fb.sendText(user_id,""+userObj);
+				break;
+			case 'STORE_PAYLOAD':
+				//this is repeat code from the quick reply payload
+				fb.sendGeneric(user_id,message_templates.templates["quick_reply_hire_capo_cheat"]);
 				break;
 			default:
         fb.sendText(user_id,"you want to "+button_payload_state);
@@ -71,9 +86,24 @@ if(button_payload_state.substring(0, 7) == "CONTACT"){
 
 	//if user sent with a quick reply
 	else if (messageItem.message.quick_reply && messageItem.message.quick_reply.payload){
-		// need to convert this to a switch at some point
-		fb.sendText(user_id,"Got a quick reply: "+messageItem.message.quick_reply.payload);
-}
+		switch (messageItem.message.quick_reply.payload) {
+			case 'STORE_PAYLOAD':
+				fb.sendGeneric(user_id,message_templates.templates["quick_reply_hire_capo_cheat"]);
+				break;
+			case 'STORE_HIRE_CAPO_CHEAT':
+				//need to assign random capos to the array
+				db.setUserFieldByIdReturnObj(user_id,"capos",player.getRandomCapos(),function(updatedObj){
+					console.log("set random capos");
+					userObj = updatedObj;
+					console.log("updated user object. Capos is now " + userObj.capos);
+					fb.sendGeneric(user_id,message_templates.capo_list_template(userObj.capos));
+				});
+				break;
+			default:
+				fb.sendText(user_id,"Got a quick reply: "+messageItem.message.quick_reply.payload);
+		}
+
+	}
 
 	// If we recieve any text message, parse and respond accordingly
 	//NOTE I think this is broken
