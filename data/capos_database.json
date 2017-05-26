@@ -1,6 +1,12 @@
 {
   "capos_database" : [
     {
+      "capo_id" : 0,
+      "name" : "Open Slot",
+      "tagline" : "Hire another Capo to do more jobs",
+      "image" : "https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_empty.jpg"
+    },
+    {
       "capo_id" : 1,
       "name" : "Crazy Ivan",
       "tagline" : "Robberies are my speciality",
@@ -29,6 +35,36 @@
       "name" : "Mister Juice",
       "tagline" : "I drink your milkshake",
       "image" : "https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capo_lean.jpg"
+    },
+    {
+      "capo_id" : 6,
+      "name" : "Consigliere",
+      "tagline" : "Evening is for tea and details. Tea and details.",
+      "image" : "https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capos_6.jpg"
+    },
+    {
+      "capo_id" : 7,
+      "name" : "Sleeping Dog",
+      "tagline" : "The sleeper must awaken",
+      "image" : "https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capos_7.jpg"
+    },
+    {
+      "capo_id" : 8,
+      "name" : "Hard Core",
+      "tagline" : "Do I look like I/'m smiling? Oh yeah I guess so",
+      "image" : "https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capos_8.jpg"
+    },
+    {
+      "capo_id" : 9,
+      "name" : "Bezerker",
+      "tagline" : "One tatoo for every kill",
+      "image" : "https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capos_9.jpg"
+    },
+    {
+      "capo_id" : 10,
+      "name" : "Lumberjack",
+      "tagline" : "They dont talk back when they got no head",
+      "image" : "https://s3-us-west-1.amazonaws.com/jpedumont-crimebot/capos_10.jpg"
     }
   ]
 }

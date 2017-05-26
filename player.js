@@ -12,7 +12,7 @@ var action_deck = require('./data/action_cards_starter.json').action_cards_start
 var capos_database = require('./data/capos_database.json').capos_database;
 
 //going to straight up copy the full 5 item database into the player's capo list for now
-var capos = capos_database;
+var capos_all = capos_database;
 
 
 function addMoney(user_id, userObj, amount){
@@ -27,10 +27,10 @@ function drawFromActionDeck(){
   var cards = [];
   var nums = [];
   while (nums.length < 3) {
-    var draw = randomIntInc(1,action_deck.length)
+    var draw = randomIntInc(0,action_deck.length)
     if(nums.indexOf(draw) > -1) continue;
-    nums[nums.length]=draw;
-    cards[nums.length]=action_deck[draw];
+      nums.push(draw);
+      cards.push(action_deck[draw]);
   }
 
   //print out cards to console to confirm it works
@@ -41,6 +41,22 @@ function drawFromActionDeck(){
   return cards;
 }
 
+function getRandomCapos(){
+    //pick five capos from capo database at random
+    var randomCapos = [];
+    var nums_capos = [];
+    while (nums_capos.length < 5) {
+      var draw_capos = randomIntInc(1,capos_all.length-1)
+      console.log("random pulled "+draw_capos);
+      if(nums_capos.indexOf(draw_capos) > -1) continue;
+        console.log("assigning " + draw_capos + " to index " + nums_capos.length);
+        nums_capos.push(draw_capos);
+        randomCapos.push(capos_all[draw_capos]);
+    }
+    //send capos back to game function
+    return randomCapos;
+  }
+
 function randomIntInc (low, high) {
     return Math.floor(Math.random() * (high - low + 1) + low);
 }
@@ -48,5 +64,6 @@ function randomIntInc (low, high) {
 module.exports = {
 	addMoney:addMoney,
   drawFromActionDeck:drawFromActionDeck,
-  capos:capos
+  capos_all:capos_all,
+  getRandomCapos:getRandomCapos
 };

@@ -90,7 +90,27 @@ let templates = {
         "image_url":"http://petersfantastichats.com/img/green.png"
       }
     ]
-  },
+},
+"quick_reply_no_capos":{
+	"text":"You have not hired a Capo yet",
+	"quick_replies":[
+		{
+			"content_type":"text",
+			"title":"Hire a Capo",
+			"payload":"STORE_PAYLOAD",
+		}
+	]
+},
+"quick_reply_hire_capo_cheat":{
+	"text":"Use the cheat to get Capos?",
+	"quick_replies":[
+		{
+			"content_type":"text",
+			"title":"CHEAT for Capos",
+			"payload":"STORE_HIRE_CAPO_CHEAT",
+		}
+	]
+},
 "greeting_template":{
     "attachment":{
       "type":"template",
@@ -173,6 +193,7 @@ let templates = {
 };
 
 function capo_list_template(capo_list){
+	console.log(capo_list);
 	return{
 		"attachment": {
 			"type": "template",
@@ -257,6 +278,16 @@ function capo_job_template(cards){
 					"top_element_style": "compact",
 					"elements":[
 						{
+							"title":cards[0].name,
+							"subtitle":"\u231a "+cards[0].duration,
+							"buttons":[
+			          {
+			            "type":"postback",
+									"title":"Do Job",
+									"payload":"JOB_"+cards[0].job_id
+			          }]
+						},
+						{
 							"title":cards[1].name,
 							"subtitle":"\u231a "+cards[1].duration,
 							"buttons":[
@@ -274,16 +305,6 @@ function capo_job_template(cards){
 			            "type":"postback",
 									"title":"Do Job",
 									"payload":"JOB_"+cards[2].job_id
-			          }]
-						},
-						{
-							"title":cards[3].name,
-							"subtitle":"\u231a "+cards[3].duration,
-							"buttons":[
-			          {
-			            "type":"postback",
-									"title":"Do Job",
-									"payload":"JOB_"+cards[3].job_id
 			          }]
 						}
 					]
