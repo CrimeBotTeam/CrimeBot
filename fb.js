@@ -58,6 +58,20 @@ function sendGeneric(user_id, message_template) {
 	}, callbackResponse);
 }
 
+// Send generic template msg (could be options, images, etc.)
+function sendGenericNotifAsync(user_id, text, callback) {
+	console.log("in the genericasync");
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token: token},
+		method: 'POST',
+		json: {
+			recipient: { id: user_id },
+			message: message_templates.quick_notif(text)
+		}
+	}, callback);
+}
+
 function callbackResponse(error, response, body) {
 	if (error) {
 		console.log('Error sending messages: ', error)
@@ -75,6 +89,7 @@ function debugTest(){
 module.exports = {
 	sendText:sendText,
 	sendGeneric:sendGeneric,
+	sendGenericNotifAsync:sendGenericNotifAsync,
   debugTest:debugTest,
 	sendTextAsync:sendTextAsync
 };

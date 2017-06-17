@@ -65,5 +65,7 @@ module.exports = {
 	addMoney:addMoney,
   drawFromActionDeck:drawFromActionDeck,
   capos_all:capos_all,
-  getRandomCapos:getRandomCapos
+  getRandomCapos:getRandomCapos,
+  action_deck:action_deck,
+  capos_database:capos_database
 };
