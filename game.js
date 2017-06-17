@@ -56,7 +56,7 @@ function parseIncoming(user_id, messageItem, userObj) {
 				fb.sendGeneric(user_id, message_templates.templates["quick_reply_no_capos"]);
 			}
 		} else if (button_payload_state.includes("JOB")) {
-			fb.sendText(user_id,"not generic you want to "+button_payload_state);
+			//fb.sendText(user_id,"not generic you want to "+button_payload_state);
 			var this_job = parseInt(button_payload_state.substring(3, 5),10);
 			var this_capo = parseInt(button_payload_state.substring(9, 11),10);
 			var this_capo_name = player.capos_database[this_capo].name;
@@ -121,13 +121,9 @@ function parseIncoming(user_id, messageItem, userObj) {
 			fb.sendGeneric(user_id,message_templates.templates["quick_reply_hire_capo_cheat"]);
 			break;
 			case 'COLLECT_PAYLOAD':
-				let now = new Date();
-				let future = date.addYears(now, 1);  // => Date object
-				db.setNextNotif(user_id,"",future, function(updatedObj){
-				userObj = updatedObj;
-				console.log("updated user object delete notif set");
+				//let now = new Date();
+				//let future = date.addYears(now, 1);  // => Date object
 				fb.sendText(user_id,"lets collect your money");
-			});
 			break;
 			case 'STORE_HIRE_CAPO_CHEAT':
 			//need to assign random capos to the array
