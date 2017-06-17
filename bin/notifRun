@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 const fb = require('../fb.js');
 const db = require('../db.js');
 var async = require('async');
+let date = require('date-and-time');
+const message_templates = require('../message_templates.js');
 
 var users = [];
 
@@ -28,10 +30,24 @@ function processNotifs(){
     function(thisuser, callback){
       console.log("try to sendNotifs to " + thisuser.nickname);
       console.log("try to sendNotifs to " + thisuser._id);
-      sendNotif(thisuser._id, function (){
-      // Async call is done, alert via callback
-      callback();
-      });
+      var next_capo = thisuser.nextCapo;
+      var notif_time = thisuser.nextNotifDue;
+      let now = new Date();
+      console.log("now is "+now+" and notif is due "+notif_time);
+      if (next_capo != "") {
+        if(notif_time < now){
+          sendNotif(thisuser._id, next_capo, function (){
+          // Async call is done, alert via callback
+          callback();
+          });
+        }
+        else {
+          callback();
+        }
+      }
+      else {
+        callback();
+      }
     },
     function(error) {
       	if (error) {
@@ -43,12 +59,12 @@ function processNotifs(){
   );
 }
 
-function sendNotif(id, callback){
-  fb.sendTextAsync(id, "Test message sent from scheduler",function (){
+function sendNotif(id, next_capo, callback){
+  fb.sendGenericNotifAsync(id, next_capo+" is ready to report in",function (){
   // Async call is done, alert via callback
-  console.log("in the callback of sendnotif");
-  callback();
-  });
+  console.log("in the callback of text send notif");
+    callback();
+});
 }
 
 //db.getAll(function(users){

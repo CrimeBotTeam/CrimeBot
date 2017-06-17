@@ -1,7 +1,7 @@
 {
   "action_cards_starter" : [
     {
-      "job_id" : 1,
+      "job_id" : 0,
       "name" : "Rob an Armored Car",
       "duration" : 30,
       "type" : "crime",
@@ -11,7 +11,7 @@
       "reward_loot" : ""
     },
     {
-      "job_id" : 2,
+      "job_id" : 1,
       "name" : "Steal Guns from Warehouse",
       "duration" : 180,
       "type" : "crime",
@@ -21,7 +21,7 @@
       "reward_loot" : ""
     },
     {
-      "job_id" : 3,
+      "job_id" : 2,
       "name" : "Collect Protection Money",
       "duration" : 10,
       "type" : "crime",
@@ -31,7 +31,7 @@
       "reward_loot" : ""
     },
     {
-      "job_id" : 4,
+      "job_id" : 3,
       "name" : "Intimidate Rivals",
       "duration" : 60,
       "type" : "crime",
@@ -41,7 +41,7 @@
       "reward_loot" : ""
     },
     {
-      "job_id" : 5,
+      "job_id" : 4,
       "name" : "Smuggle Contraband",
       "duration" : 120,
       "type" : "crime",
@@ -51,7 +51,7 @@
       "reward_loot" : ""
     },
     {
-      "job_id" : 6,
+      "job_id" : 5,
       "name" : "Take out a Rogue Cop",
       "duration" : 360,
       "type" : "crime",
@@ -61,7 +61,7 @@
       "reward_loot" : ""
     },
     {
-      "job_id" : 7,
+      "job_id" : 6,
       "name" : "Collect on a Loan",
       "duration" : 10,
       "type" : "crime",
@@ -71,7 +71,7 @@
       "reward_loot" : ""
     },
     {
-      "job_id" : 8,
+      "job_id" : 7,
       "name" : "Rob a Jewelry Store",
       "duration" : 90,
       "type" : "crime",
@@ -81,7 +81,7 @@
       "reward_loot" : ""
     },
     {
-      "job_id" : 9,
+      "job_id" : 8,
       "name" : "Hijack a Semi",
       "duration" : 40,
       "type" : "crime",

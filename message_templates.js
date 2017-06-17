@@ -264,7 +264,20 @@ function capo_list_template(capo_list){
 	}
 }
 
-function capo_job_template(cards){
+function quick_notif(text){
+	return{
+			"text":text,
+			"quick_replies":[
+				{
+					"content_type":"text",
+					"title":"Collect",
+					"payload":"COLLECT_PAYLOAD",
+				}
+			]
+	}
+}
+
+function capo_job_template(cards, capo_number){
 	//console.log("cards from template script");
 	//console.log(cards[1]);
 	//console.log(cards[2]);
@@ -284,7 +297,7 @@ function capo_job_template(cards){
 			          {
 			            "type":"postback",
 									"title":"Do Job",
-									"payload":"JOB_"+cards[0].job_id
+									"payload":"JOB"+(("0" + cards[0].job_id).slice(-2))+"CAPO"+(("0" + capo_number).slice(-2))
 			          }]
 						},
 						{
@@ -294,7 +307,7 @@ function capo_job_template(cards){
 			          {
 			            "type":"postback",
 									"title":"Do Job",
-									"payload":"JOB_"+cards[1].job_id
+									"payload":"JOB"+(("0" + cards[1].job_id).slice(-2))+"CAPO"+(("0" + capo_number).slice(-2))
 			          }]
 						},
 						{
@@ -304,7 +317,7 @@ function capo_job_template(cards){
 			          {
 			            "type":"postback",
 									"title":"Do Job",
-									"payload":"JOB_"+cards[2].job_id
+									"payload":"JOB"+(("0" + cards[2].job_id).slice(-2))+"CAPO"+(("0" + capo_number).slice(-2))
 			          }]
 						}
 					]
@@ -317,5 +330,6 @@ function capo_job_template(cards){
 module.exports = {
 	templates: templates,
 	capo_job_template: capo_job_template,
-	capo_list_template: capo_list_template
+	capo_list_template: capo_list_template,
+	quick_notif:quick_notif
 };

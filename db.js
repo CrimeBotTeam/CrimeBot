@@ -10,7 +10,9 @@ const User = mongoose.model('User', {
   money: Number,
   xp: Number,
   current_state: String,
-  capos: Array
+  capos: Array,
+  nextCapo: String,
+  nextNotifDue: Object
 });
 
 function connect(){
@@ -40,6 +42,29 @@ function setUserFieldById(user_id, key, val) {
             userObj.save(function (err) {
             });
             console.log('User '+user_id+' exists. Saving current ' +key+' state:', userObj[key]);
+        }
+        // New user. Add it to module
+        else {
+            getAndSetNewUser(user_id);
+        }
+    });
+}
+
+function setNextNotif(user_id, capo, time, callback) {
+    User.findById(user_id, function (err, userObj) {
+        if (err) {
+            console.log(err);
+            // User is found. modify key->val
+        } else if (userObj) {
+            //console.log("initiate saving notif with capo "+capo+" and time "+time);
+            //console.log(Object.prototype.toString.call(time));
+            //console.log("curent values are capo "+userObj["nextCapo"]+" and time "+userObj["nextNotifDue"]);
+            userObj["nextCapo"] = capo;
+            userObj["nextNotifDue"] = time;
+            //console.log("should save these values are capo "+userObj["nextCapo"]+" and time "+userObj["nextNotifDue"]);
+            userObj.save(function (err) {
+              console.log("saving notif");
+              callback(userObj);});
         }
         // New user. Add it to module
         else {
@@ -117,7 +142,9 @@ function getAndSetNewUser(user_id) {
         "money": 0,
         "xp": 0,
         "current_state": "welcome_message",
-        "capos": []
+        "capos": [],
+        "nextCapo": "",
+        "nextNotifDue": {}
     });
     user.save(function (err, userObj) {
         if (err) {
@@ -142,7 +169,8 @@ function getUserById(user_id, incomingMessage, callback) {
             console.log(err);
         } else if (userObj) {
             result = userObj;
-            console.log('User ' + user_id + ' exists. Getting current user object:', userObj);
+            //console.log('User ' + user_id + ' exists. Getting current user object:', userObj);
+            console.log('User ' + user_id + ' exists. Getting current user object:');
         } else {
             console.log('User not found!');
         }
@@ -192,6 +220,7 @@ function getAll(callback){
 
 module.exports = {
     setUserFieldById:setUserFieldById,
+    setNextNotif:setNextNotif,
     getUserById:getUserById,
     getUserObj:getUserObj,
     getUserFieldById:getUserFieldById,
