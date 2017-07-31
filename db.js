@@ -13,9 +13,12 @@ const User = mongoose.model('User', {
   capos: Array,
   nextCapo: String,
   nextNotifDue: Object
+  //need to define a way to store all the capos and what they are doing so i can traverse it in the collect function
 });
 
+//initial connection to the database, called from server.js at the beginning of the code
 function connect(){
+  console.log("trying to connect to " + process.env.MONGODB_URI);
   mongoose.connect((process.env.MONGODB_URI),function(err){
   	if (err) {
   		console.error(err);
@@ -23,6 +26,31 @@ function connect(){
   	}
   	console.log("connected to " + process.env.MONGODB_URI);
   });
+}
+
+/**
+ * Get user info by facebook id. This is called when ICM arrives.
+ * this is the first major function in the flow
+ * it checks is there is a user and makes one if needed.
+ * then it forwards on to the callback, in most cases this is the
+ * game.parseIncoming function
+ */
+function getUserById(user_id, incomingMessage, callback) {
+    var result = null;
+    //Lets try to Find a user
+    User.findById(user_id, function (err, userObj) {
+        if (err) {
+            console.log(err);
+        } else if (userObj) {
+            result = userObj;
+            //console.log('User ' + user_id + ' exists. Getting current user object:', userObj);
+            console.log('User ' + user_id + ' exists. Getting current user object:');
+        } else {
+            console.log('User not found!');
+        }
+        // After getting user object, forward to callback method.
+        callback(user_id, incomingMessage, userObj);
+    });
 }
 
 /**
@@ -50,18 +78,22 @@ function setUserFieldById(user_id, key, val) {
     });
 }
 
-function setNextNotif(user_id, capo, time, callback) {
+//called by game.js when a job has been selected by the user
+//currently only saves the incoming paramaters to the database
+//this funciton needs more logic (and maybe should live in player.js)
+function setDoJob(user_id, capo, job, time, callback) {
     User.findById(user_id, function (err, userObj) {
         if (err) {
             console.log(err);
             // User is found. modify key->val
         } else if (userObj) {
-            //console.log("initiate saving notif with capo "+capo+" and time "+time);
-            //console.log(Object.prototype.toString.call(time));
-            //console.log("curent values are capo "+userObj["nextCapo"]+" and time "+userObj["nextNotifDue"]);
-            userObj["nextCapo"] = capo;
+            userObj["nextCapo"] = capo.name;
             userObj["nextNotifDue"] = time;
-            //console.log("should save these values are capo "+userObj["nextCapo"]+" and time "+userObj["nextNotifDue"]);
+            //right now i am only saving this capos job as the next notif
+            //there is no logic that to make sure this job is actually sooner
+            //than the currently saved notif
+            //AND this needs to save all jobs on the capo, not just the most recent
+            //right now nothing is getting saved but the job just passed in
             userObj.save(function (err) {
               console.log("saving notif");
               callback(userObj);});
@@ -73,24 +105,8 @@ function setNextNotif(user_id, capo, time, callback) {
     });
 }
 
-function setUserFieldById(user_id, key, val) {
-    User.findById(user_id, function (err, userObj) {
-        if (err) {
-            console.log(err);
-            // User is found. modify key->val
-        } else if (userObj) {
-            userObj[key] = val;
-            userObj.save(function (err) {
-            });
-            console.log('User '+user_id+' exists. Saving current ' +key+' state:', userObj[key]);
-        }
-        // New user. Add it to module
-        else {
-            getAndSetNewUser(user_id);
-        }
-    });
-}
-
+//called when the game.js needs to update the user object and get back an updated
+//copy of the user object for further game logic
 function setUserFieldByIdReturnObj(user_id, key, val, callback) {
     User.findById(user_id, function (err, userObj) {
         if (err) {
@@ -112,7 +128,7 @@ function setUserFieldByIdReturnObj(user_id, key, val, callback) {
 }
 
 
-//GET USER FIELD METHOD
+//simple get function to grab the value of something from the user db entry
 function getUserFieldById(user_id, key) {
     User.findById(user_id, function (err, userObj) {
         if (err) {
@@ -155,29 +171,6 @@ function getAndSetNewUser(user_id) {
     });
 }
 
-/**
- * Get user info by facebook id. This is called when ICM arrives.
- * @param user_id
- * @param incomingMessage
- * @param callback
- */
-function getUserById(user_id, incomingMessage, callback) {
-    var result = null;
-    //Lets try to Find a user
-    User.findById(user_id, function (err, userObj) {
-        if (err) {
-            console.log(err);
-        } else if (userObj) {
-            result = userObj;
-            //console.log('User ' + user_id + ' exists. Getting current user object:', userObj);
-            console.log('User ' + user_id + ' exists. Getting current user object:');
-        } else {
-            console.log('User not found!');
-        }
-        // After getting user object, forward to callback method.
-        callback(user_id, incomingMessage, userObj);
-    });
-}
 
 function getUserObj(user_id, callback) {
     var result = null;
@@ -220,7 +213,7 @@ function getAll(callback){
 
 module.exports = {
     setUserFieldById:setUserFieldById,
-    setNextNotif:setNextNotif,
+    setDoJob:setDoJob,
     getUserById:getUserById,
     getUserObj:getUserObj,
     getUserFieldById:getUserFieldById,
