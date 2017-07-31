@@ -57,20 +57,14 @@ function parseIncoming(user_id, messageItem, userObj) {
 			}
 		} else if (button_payload_state.includes("JOB")) {
 			//fb.sendText(user_id,"not generic you want to "+button_payload_state);
-			var this_job = parseInt(button_payload_state.substring(3, 5),10);
-			var this_capo = parseInt(button_payload_state.substring(9, 11),10);
-			var this_capo_name = player.capos_database[this_capo].name;
+			let this_job_id = parseInt(button_payload_state.substring(3, 5),10);
+			let this_capo_id = parseInt(button_payload_state.substring(9, 11),10);
+			let this_capo = player.capos_database[this_capo];
+			let this_job = player.action_deck[this_job];
 			let now = new Date();
-			let notifTime = date.addMinutes(now, player.action_deck[this_job].duration);
-			console.log("capo "+this_capo+" will do job "+this_job);
-			//console.log("duration of job chosen is "+action_deck[this_job].duration);
-			//console.log(player.action_deck);
-			console.log("this job number is "+this_job);
-			//console.log(player.action_deck[this_job]);
-			console.log("current time is "+now);
-			console.log("job should finish at "+notifTime);
-			console.log("is that in the future? " + (notifTime > now));
-			db.setNextNotif(user_id,this_capo_name,notifTime, function(updatedObj){
+			let notifTime = date.addMinutes(now, this_job.duration);
+			console.log("capo "+this_capo.name+" will do job "+this_job.name);
+			db.setDoJob(user_id,this_capo,this_job,notifTime, function(updatedObj){
 				userObj = updatedObj;
 				console.log("updated user object form notif set");
 				fb.sendText(user_id,"ok boss, i'll be done around " + date.format(notifTime, 'h:mm'));

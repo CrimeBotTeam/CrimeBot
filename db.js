@@ -13,6 +13,7 @@ const User = mongoose.model('User', {
   capos: Array,
   nextCapo: String,
   nextNotifDue: Object
+  //need to define a way to store all the capos and what they are doing so i can traverse it in the collect function
 });
 
 function connect(){
@@ -50,7 +51,7 @@ function setUserFieldById(user_id, key, val) {
     });
 }
 
-function setNextNotif(user_id, capo, time, callback) {
+function setDoJob(user_id, capo, job, time, callback) {
     User.findById(user_id, function (err, userObj) {
         if (err) {
             console.log(err);
@@ -59,7 +60,7 @@ function setNextNotif(user_id, capo, time, callback) {
             //console.log("initiate saving notif with capo "+capo+" and time "+time);
             //console.log(Object.prototype.toString.call(time));
             //console.log("curent values are capo "+userObj["nextCapo"]+" and time "+userObj["nextNotifDue"]);
-            userObj["nextCapo"] = capo;
+            userObj["nextCapo"] = capo.name;
             userObj["nextNotifDue"] = time;
             //console.log("should save these values are capo "+userObj["nextCapo"]+" and time "+userObj["nextNotifDue"]);
             userObj.save(function (err) {
@@ -220,7 +221,7 @@ function getAll(callback){
 
 module.exports = {
     setUserFieldById:setUserFieldById,
-    setNextNotif:setNextNotif,
+    setDoJob:setDoJob,
     getUserById:getUserById,
     getUserObj:getUserObj,
     getUserFieldById:getUserFieldById,
