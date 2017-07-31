@@ -28,13 +28,12 @@ function processNotifs(){
   async.each(
     users,
     function(thisuser, callback){
-      console.log("try to sendNotifs to " + thisuser.nickname);
-      console.log("try to sendNotifs to " + thisuser._id);
+      console.log("try to sendNotifs to " + thisuser.nickname +" at ID "+thisuser._id);
       var next_capo = thisuser.nextCapo;
       var notif_time = thisuser.nextNotifDue;
       let now = new Date();
       console.log("now is "+now+" and notif is due "+notif_time);
-      if (next_capo != "") {
+      if (next_capo != "" && typeof next_capo !== 'undefined') {
         //if(notif_time > now){ // this is for testing only
         if(notif_time < now){ //this is the real one
           sendNotif(thisuser._id, next_capo, function (){
@@ -43,10 +42,12 @@ function processNotifs(){
           });
         }
         else {
+          console.log("notif time has not passed yet");
           callback();
         }
       }
       else {
+        console.log("next_capo is blank or undefined");
         callback();
       }
     },
@@ -64,12 +65,11 @@ function sendNotif(id, next_capo, callback){
   fb.sendGenericNotifAsync(id, next_capo+" is ready to report in",function (){
     // Async call is done, alert via callback
     console.log("in the callback of text send notif");
-    db.setNextNotif(id,"",{}, function(updatedObj){
-    //userObj = updatedObj;
-    console.log("updated user object delete notif set");
-    callback();
+    db.setDoJob(id,"","","",function(userObj){
+      console.log("updated user object delete notif set");
+      callback();
+      });
   });
-});
 }
 
 //db.getAll(function(users){

@@ -1,5 +1,5 @@
 //main server code that sends everything out to other code paths
-
+//is launched by the Procfile locally
 'use strict'
 
 const express = require('express');
@@ -9,11 +9,18 @@ const app = express();
 const fb= require('./fb.js');
 const db= require('./db.js');
 const game= require('./game.js');
+
+//"process.env.*" pulls from the environment variables. these are set on heroku's site
+//locally they are contained in the ".env" file
 const token = process.env.PAGE_ACCESS_TOKEN;
 const verify_token = process.env.VERIFY_TOKEN;
 
+
 app.set('port', (process.env.PORT || 3000));
 
+//connect to the mlab mongo database
+//all the database specific code lives in "db.json"
+//and is referenced through the db object, created above
 db.connect();
 
 // Parse application/json
@@ -45,7 +52,7 @@ function verification(req, res) {
 	res.send('Error, wrong token');
 }
 
-// Facebook webhook listener for Incoming msgs. This is where the ICMs arrive and parsed accordingly
+// Facebook webhook listener for Incoming msgs. This is where the ICMs (incoming messages) arrive and are parsed accordingly
 function webhookListener(req, res) {
 	console.log("Got ICM");
 	if (!req.body || !req.body.entry[0] || !req.body.entry[0].messaging) return console.error("no entries on received body");
